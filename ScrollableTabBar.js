@@ -60,8 +60,8 @@ const ScrollableTabBar = createReactClass({
   },
 
   updateView(offset) {
-    if (offset.value === undefined){
-      offset.value=this.props.activeTab;
+    if(offset.value === undefined){
+      offset.value = this.props.activeTab;
     }
     const position = Math.floor(offset.value);
     const pageOffset = offset.value % 1;
@@ -151,7 +151,7 @@ const ScrollableTabBar = createReactClass({
   measureTab(page, event) {
     const { x, width, height, } = event.nativeEvent.layout;
     this._tabsMeasurements[page] = {left: x, right: x + width, width, height, };
-    this.updateView({value: this.props.scrollValue.__getValue(), });
+    this.updateView({value: this.props.scrollValue._value, });
   },
 
   render() {
@@ -210,12 +210,12 @@ const ScrollableTabBar = createReactClass({
       width = WINDOW_WIDTH;
     }
     this.setState({ _containerWidth: width, });
-    this.updateView({value: this.props.scrollValue.__getValue(), });
+    this.updateView({value: this.props.scrollValue._value, });
   },
 
   onContainerLayout(e) {
     this._containerMeasurements = e.nativeEvent.layout;
-    this.updateView({value: this.props.scrollValue.__getValue(), });
+    this.updateView({value: this.props.scrollValue._value, });
   },
 });
 
